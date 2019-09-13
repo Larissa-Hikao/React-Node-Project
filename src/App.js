@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser')
 
-export default App;
+const provasRouter = require('./routes/provas')
+
+
+const app = express();
+
+
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+app.use(morgan('dev'));
+
+app.use(bodyParser.urlencoded({extended: false }))
+app.use('/provas',provasRouter)
+
+
+app.get('/', (req, res, next) => {
+  res.render('index', {
+    titulo: 'Gerador de Declarações de Prova'
+  });
+});
+
+app.use((req, res, next) => {
+  res.sendStatus(404);
+});
+
+app.listen(3000);
