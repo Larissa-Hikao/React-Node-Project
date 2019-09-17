@@ -11,7 +11,7 @@ class Item{
         this.nome=nome
     }
 
-    lerItens()
+    //lerItens()
 
     salvar(){
         let itens=[]

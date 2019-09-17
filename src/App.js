@@ -3,23 +3,22 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser')
 
-const provasRouter = require('./routes/provas')
+const itensRouter = require('../routes/itensRouter')
 
 
 const app = express();
 
 
 app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set('views', 'view');
 
 app.use(morgan('dev'));
 
-app.use(bodyParser.urlencoded({extended: false }))
-app.use('/provas',provasRouter)
+app.use('/item',itensRouter)
 
 
 app.get('/', (req, res, next) => {
-  res.render('index', {
+  res.render('item', {
     titulo: 'Gerador de Declarações de Prova'
   });
 });
