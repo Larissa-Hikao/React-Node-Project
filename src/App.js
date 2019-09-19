@@ -18,8 +18,8 @@ app.use('/item',itensRouter)
 
 
 app.get('/', (req, res, next) => {
-  res.render('item', {
-    titulo: 'Gerador de Declarações de Prova'
+  res.render('item/item', {
+    titulo: 'Cadastrar novo Item'
   });
 });
 
